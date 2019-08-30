@@ -1,3 +1,5 @@
 To run:
 
-`java -jar echo-server.jar { port-number (optional) } {}`
+(all args optional)
+
+`java -jar echo-server.jar -p <relay port number> -h <relay host> -s <self port number>`
