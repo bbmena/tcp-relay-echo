@@ -34,7 +34,6 @@ public class Main {
         while(true) {
             String line;
             while((line = relayIn.readLine())!= null) {
-                System.out.println(line);
                 String[] hostAndPort =  line.split(":");
                 Socket newListenerSocket = new Socket(hostAndPort[0], Integer.parseInt(hostAndPort[1]));
                 new Thread(new ConnectionHandler(newListenerSocket)).start();
