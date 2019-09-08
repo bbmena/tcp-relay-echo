@@ -29,11 +29,12 @@ public class Main {
         Socket relayListenerSocket = new Socket(host, relayPort);
         System.out.println("Connected to relay at " + host + " on port " + relayPort);
         BufferedReader relayIn = new BufferedReader(new InputStreamReader(relayListenerSocket.getInputStream()));
-
+        System.out.println("Contact me at: " + relayIn.readLine());
 
         while(true) {
             String line;
             while((line = relayIn.readLine())!= null) {
+                System.out.println(line);
                 String[] hostAndPort =  line.split(":");
                 Socket newListenerSocket = new Socket(hostAndPort[0], Integer.parseInt(hostAndPort[1]));
                 new Thread(new ConnectionHandler(newListenerSocket)).start();
