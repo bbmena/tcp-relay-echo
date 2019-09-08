@@ -3,19 +3,16 @@ package com.crowdstorage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         int relayPort = 8080;
-        int selfPort = 4444;
         String host = "localhost";
 
         if(args.length == 0){
-            System.out.println("No ports or host specified. Starting on port 4444. Connecting to relay server at localhost on port 8080");
+            System.out.println("No port or host specified. Connecting to relay server at localhost on port 8080");
         } else {
             for (int i = 0; i < args.length; i++) {
                 if (args[i].equalsIgnoreCase("-p")) {
@@ -26,15 +23,8 @@ public class Main {
                     i++;
                     host = args[i];
                 }
-                if (args[i].equalsIgnoreCase("-s")) {
-                    i++;
-                    selfPort =Integer.parseInt(args[i]);
-                }
             }
         }
-
-
-        ServerSocket serverSocket = new ServerSocket(selfPort);
 
         Socket relayListenerSocket = new Socket(host, relayPort);
         System.out.println("Connected to relay at " + host + " on port " + relayPort);
